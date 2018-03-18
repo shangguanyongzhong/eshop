@@ -2,6 +2,7 @@ package com.roncoo.eshop.inventory.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 //)
 
 @Configuration
+@MapperScan("com.roncoo.eshop.inventory.mapper")
 public class DataSourceConfig {
 
     @Bean
