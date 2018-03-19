@@ -17,7 +17,7 @@ public class RequestProcessorThreadPool {
     // 在实际项目中，你设置线程池大小是多少，每个线程监控的那个内存队列的大小是多少
     // 都可以做到一个外部的配置文件中
     /**
-     * 线程池
+     * 线程池[这里我们建议使用手动创建线程池，规避一些资源的消耗]
      */
     private ExecutorService threadPool = Executors.newFixedThreadPool(10);
 
