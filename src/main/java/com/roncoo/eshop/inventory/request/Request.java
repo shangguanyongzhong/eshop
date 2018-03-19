@@ -7,4 +7,7 @@ package com.roncoo.eshop.inventory.request;
  * @create 2018/3/18 0018
  */
 public interface Request {
+
+    void process();
+    Integer getProductId();
 }

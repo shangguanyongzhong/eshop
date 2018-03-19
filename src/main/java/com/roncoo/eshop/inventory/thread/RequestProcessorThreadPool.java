@@ -36,7 +36,7 @@ public class RequestProcessorThreadPool {
             instance = new RequestProcessorThreadPool();
         }
 
-        public static RequestProcessorThreadPool getInstace(){
+        public static RequestProcessorThreadPool getInstance(){
             return instance;
         }
     }
@@ -48,15 +48,15 @@ public class RequestProcessorThreadPool {
      *
      * @return
      */
-    public static RequestProcessorThreadPool getInstace(){
-        return Singleton.getInstace();
+    public static RequestProcessorThreadPool getInstance(){
+        return Singleton.getInstance();
     }
 
     /**
      * 初始化的便捷方式
      */
     public static void init() {
-        getInstace();
+        getInstance();
     }
 
 }

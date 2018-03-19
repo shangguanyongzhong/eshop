@@ -1,6 +1,7 @@
 package com.roncoo.eshop.inventory.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * 库存信息
@@ -9,6 +10,7 @@ import lombok.Data;
  * @create 2018/3/18 0018
  */
 @Data
+@Accessors(chain = true)
 public class ProductInventory {
 
     /**
@@ -20,4 +22,12 @@ public class ProductInventory {
      */
     private Long inventoryCnt;
 
+    public ProductInventory() {
+
+    }
+
+    public ProductInventory(Integer productId, Long inventoryCnt) {
+        this.productId = productId;
+        this.inventoryCnt = inventoryCnt;
+    }
 }
