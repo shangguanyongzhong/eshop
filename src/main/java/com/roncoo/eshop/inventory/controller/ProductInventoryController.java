@@ -53,8 +53,8 @@ public class ProductInventoryController {
         ProductInventory productInventory = null;
         try {
 
-            Request request = new ProductInventoryCacheRefreshRequest(productId, productInventoryService);
-
+            Request request = new ProductInventoryCacheRefreshRequest(productId, productInventoryService, false);
+            requestAsyncProcessService.process(request);
             // 将请求扔给service异步去处理以后，就需要while(true)一会儿，在这里hang住
             // 去尝试等待前面有商品库存更新的操作，同时缓存刷新的操作，将最新的数据刷新到缓存中
             long startTime = System.currentTimeMillis();
@@ -81,6 +81,8 @@ public class ProductInventoryController {
             // 直接尝试从数据库中读取数据
             productInventory = productInventoryService.findProductInventory(productId);
             if(productInventory != null){
+                request = new ProductInventoryCacheRefreshRequest(productId, productInventoryService, true);
+                requestAsyncProcessService.process(request);
                 return productInventory;
             }
         }catch (Exception e){
