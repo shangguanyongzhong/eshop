@@ -32,6 +32,7 @@ public class ProductInventoryController {
     @RequestMapping("/updateProductInventory")
     @ResponseBody
     public Response updateProductInventory(ProductInventory productInventory){
+        System.out.println("===========日志===========: 接收到更新商品库存的请求，商品id=" + productInventory.getProductId() + ", 商品库存数量=" + productInventory.getInventoryCnt());
         Response response = null;
         try{
             Request request = new ProductInventoryDBUpdateRequest(productInventory, productInventoryService);
@@ -50,6 +51,7 @@ public class ProductInventoryController {
     @RequestMapping("/getProductInventory")
     @ResponseBody
     public ProductInventory getProductInventory(Integer productId) {
+        System.out.println("===========日志===========: 接收到一个商品库存的读请求，商品id=" + productId);
         ProductInventory productInventory = null;
         try {
 
@@ -62,7 +64,7 @@ public class ProductInventoryController {
             long waitTime = 0L;
             // 等待超过200ms没有从缓存中获取到结果
             while (true){
-                if(waitTime > 200){
+                if(waitTime > 2500){
                     break;
                 }
                 // 尝试去redis中读取一次商品库存的缓存数据

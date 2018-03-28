@@ -25,11 +25,13 @@ public class ProductInventoryServiceImpl implements ProductInventoryService {
     @Override
     public void updateProductInventory(ProductInventory productInventory) {
         productInventoryMapper.updateProductInventory(productInventory);
+        System.out.println("===========日志===========: 已修改数据库中的库存，商品id=" + productInventory.getProductId() + ", 商品库存数量=" + productInventory.getInventoryCnt());
     }
 
     @Override
     public void removeProductInventoryCache(ProductInventory productInventory) {
         redisDAO.delete("product:inventory:" + productInventory.getProductId());
+        System.out.println("===========日志===========: 已删除redis中的缓存，key=" + "product:inventory:" + productInventory.getProductId());
     }
 
     @Override
@@ -40,6 +42,7 @@ public class ProductInventoryServiceImpl implements ProductInventoryService {
     @Override
     public void setProductInventoryCache(ProductInventory productInventory) {
         redisDAO.set("product:inventory:" + productInventory.getProductId(), String.valueOf(productInventory.getInventoryCnt()));
+        System.out.println("===========日志===========: 已更新商品库存的缓存，商品id=" + productInventory.getProductId() + ", 商品库存数量=" + productInventory.getInventoryCnt() + ", key=" + "product:inventory:" + productInventory.getProductId());
     }
 
     @Override
